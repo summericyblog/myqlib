@@ -11,7 +11,11 @@ python ./qlib/scripts/dump_bin.py dump_all --csv_path ./data/temp/normal --qlib_
 python ./qlib/scripts/data_collector/yahoo/collector.py download_data --source_dir ./data/temp/raw --start 2020-11-20 --end 2023-06-28 --delay 1 --interval 1d --region US
 
 # normalize 1d cn
-python ./qlib/scripts/data_collector/yahoo/collector.py normalize_data --source_dir ./data/temp/raw --normalize_dir ./data/temp/normal --region CN --interval 1d
+python ./qlib/scripts/data_collector/yahoo/collector.py normalize_data --source_dir ./data/temp/raw --normalize_dir ./data/temp/normal --region US --interval 1d
 
 # dump 1d cn
 python ./qlib/scripts/dump_bin.py dump_all --csv_path ./data/temp/normal --qlib_dir ./data/us_data --freq day --exclude_fields date,symbol
+
+python ./qlib/scripts/data_collector/yahoo/collector.py update_data_to_bin --source_dir ./data/temp/raw --normalize_dir ./data/temp/normal --qlib_data_1d_dir ./data/cn_data --trading_date 2023-06-28 --end_date 2023-06-29 --region CN
+
+python ./qlib/scripts/data_collector/yahoo/collector.py update_data_to_bin --source_dir ./data/temp/raw --normalize_dir ./data/temp/normal --qlib_data_1d_dir ./data/us_data --trading_date 2023-06-28 --end_date 2023-06-29 --region US
